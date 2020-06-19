@@ -1,0 +1,46 @@
+public class Polynomial{
+    int[] coefficients;
+    char name;
+    public Polynomial(char name, int [] coefficients)
+    {
+        this.coefficients=coefficients;
+        this.name=name;
+    }
+    public String getExpression()
+    {
+        String expression = name + "(x) = ";
+        if(coefficients.length>2 && coefficients[coefficients.length-1] != 0)
+        {
+            expression+=coefficients[coefficients.length-1]+"x^"+(coefficients.length-1);
+        }
+        for(int i = coefficients.length - 2; i >= 2; i--)
+        {
+            if(coefficients[i] == 1)
+            {
+                expression += " + " + i + "x^";
+            }   
+            else if(coefficients[i] != 0 && coefficients[i] != 1)
+            {
+                expression += " + " + coefficients[i] + "x^" + i;
+            }
+        }
+        if(coefficients.length>=2 && coefficients[1] != 0)
+        {
+            expression += " + " + coefficients[1]+"x";
+        }
+        if(coefficients.length>1 && coefficients[0] != 0)
+        {
+            expression += " + " + coefficients[0];
+        }
+        if(coefficients.length == 1)
+        {
+            expression += coefficients[0];
+        }
+        return expression;
+    }
+     public static void main(String []args){
+         int[] array = {1,4,5,0,6,0,4};
+         Polynomial f = new Polynomial('f',array);
+         System.out.println(f.getExpression());
+    }
+}
